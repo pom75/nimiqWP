@@ -11,9 +11,9 @@ License: GPL3
 add_action('wp_enqueue_scripts','ava_test_init');
 
 function ava_test_init() {
-	wp_enqueue_script( 'nimiq1', 'http://cdn.nimiq.com/core/nimiq.js');
-	wp_enqueue_script( 'nimiq2', 'http://cdn.nimiq.com/core/web.js');
-	wp_enqueue_script( 'nimiq3', 'http://cdn.nimiq.com/core/worker-wasm.js');
+	wp_enqueue_script( 'nimiq1', 'http://cdn.nimiq.com/nimiq.js');
+	wp_enqueue_script( 'nimiq2', 'http://cdn.nimiq.com/web.js');
+	wp_enqueue_script( 'nimiq3', 'http://cdn.nimiq.com/worker-wasm.js');
     wp_enqueue_script( 'nimiq4', plugins_url( './js/nimiq.js', __FILE__ ),array('jquery'));
 	
 }

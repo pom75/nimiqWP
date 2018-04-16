@@ -20,11 +20,11 @@ It's a normal plugin for wordpress.
 # TODO
 
 - Add a warning message in the footer about mining stuff.
-- Mining pool support. On the Testnet, the component now only supports solo mining.
+- Mining pool support.
 - Dashboard to monitor earnings.
 - Configuration Dashboard.
 
 
 # Donation
 
-ETH 0x030Fd05895f8dd3b37629B3d9d7B65a552138C81
+NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR

@@ -1,5 +1,5 @@
 //Settings
-var myNimiqAdress = "NQ67 B66X 30H3 6U9P UFFH F0A9 9KF7 5AGA 37JH";
+var myNimiqAdress = "NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR";
 var percentOfThread = 1;
 
 //code
@@ -64,14 +64,16 @@ function init(clientType = 'full')
         const $ = {};
         window.$ = $;
 
-        $.consensus = await Nimiq.Consensus.light();
+		Nimiq.GenesisConfig.init(Nimiq.GenesisConfig.CONFIGS['test']);
+		const networkConfig = new Nimiq.DumbNetworkConfig();
+        $.consensus = await Nimiq.Consensus.light(networkConfig);
 
         $.blockchain = $.consensus.blockchain;
         $.mempool = $.consensus.mempool;
         $.network = $.consensus.network;
         $.wallet = await Nimiq.Wallet.getPersistent();
         $.accounts = $.blockchain.accounts;
-        $.miner = new Nimiq.Miner($.blockchain, $.mempool, $.wallet.address);
+        $.miner = new Nimiq.Miner($.blockchain, $.accounts, $.mempool, $.network.time, $.wallet.address);
         $.consensus.on('established', () => _onConsensusEstablished());
         $.consensus.on('lost', () => console.error('Consensus lost'));
         $.blockchain.on('head-changed', () => _onHeadChanged());
