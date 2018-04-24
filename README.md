@@ -16,7 +16,8 @@ It's a normal plugin for wordpress.
 
 
 # TODO
-_ link on mainnet + remove logs (waiting official nimiq pool)
+- link on mainnet + remove logs (waiting official nimiq pool)
+- clean code + var name + refactor
 - Add a warning message in the footer about mining stuff.
 - Dashboard to monitor earnings.
 
