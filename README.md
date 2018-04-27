@@ -22,7 +22,9 @@ It's a normal plugin for wordpress.
 - Add a warning message in the footer about mining stuff.
 - Dashboard to monitor earnings.
 
+# Example
 
+![Settings](/pool.png)
 
 # Donation
 
