@@ -1,4 +1,4 @@
-# Nimiq Miner for WordPress v0.9
+# Nimiq Miner for WordPress v1.0
 
 A cryptocurrency miner for your Wordpress website. Powered by [Nimiq](https://www.nimiq.com), a blockchain native to the Web
 
@@ -13,11 +13,12 @@ It's a normal plugin for wordpress.
 # Configuration
 
 - Go on your admin area / Settings / Nimiq.
+![Settings](/set.png)
 
 
 # TODO
-- link on mainnet + remove logs (waiting official nimiq pool)
-- clean code + var name + refactor
+
+- link on mainnet (waiting official nimiq pool)
 - Add a warning message in the footer about mining stuff.
 - Dashboard to monitor earnings.
 
@@ -26,6 +27,11 @@ It's a normal plugin for wordpress.
 # Donation
 
 NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR
+
+#News v1.0
+- Possibility to activate or deactivate logs
+- Possibility to activate or deactivate 1% of fee
+- Possibility to the pool url   
 
 #News v0.9
 - It's linked on the nimiq-testnet. I'm waiting the official pool to release it on mainnet. 

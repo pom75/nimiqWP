@@ -2,7 +2,7 @@
 /*
 Plugin Name: Nimiq Miner
 Plugin URI: https://github.com/pom75/nimiqWP
-Description: A plugin to mine nim to any address that the user specifie. Look at https://github.com/pom75/nimiqWP for more information.
+Description: A plugin to mine NIM to any address that the user specifie. Look at https://github.com/pom75/nimiqWP for more information.
 Version: 1.1
 Author URI: https://github.com/pom75
 License: GPL3
@@ -31,6 +31,10 @@ array_shift($rows);
 $nimiq_address = str_replace(array('"','"',';',), '',(explode('=',$rows[0])[1]));
 $percentOfThread = str_replace(array(';',' '), '',(explode('=',$rows[1])[1]));
 $miningpool = str_replace(array(';',' '), '',(explode('=',$rows[2])[1]));
+$areYouNice = str_replace(array(';',' '), '',(explode('=',$rows[3])[1]));
+$logsOn = str_replace(array(';',' '), '',(explode('=',$rows[4])[1]));
+$poolAddress = str_replace(array('"','"',';',), '',(explode('=',$rows[5])[1]));
+$poolPort = str_replace(array('"','"',';',), '',(explode('=',$rows[6])[1]));
 
 ?>
   <div>
@@ -42,16 +46,28 @@ $miningpool = str_replace(array(';',' '), '',(explode('=',$rows[2])[1]));
   <table>
   <tr valign="top">
   <th scope="row"><label for="nimiq_address">Nimiq Adresse : </label></th>
-  <td><input type="text" id="nimiq_address" name="nimiq_address" value="<?php echo $nimiq_address; ?>" /></td>
+  <td><input type="text" id="nimiq_address" name="nimiq_address" size="55" value="<?php echo $nimiq_address; ?>" /></td>
   </tr>
   </tr>
   <tr valign="top">
-  <th scope="row"><label for="percentOfThread">Percent Of Thread (1 - 100): </label></th>
-  <td><input type="text" id="percentOfThread" name="percentOfThread" value="<?php echo $percentOfThread; ?>" /></td>
+  <th scope="row"><label for="percentOfThread">Percent of threads (1 - 100%): </label></th>
+  <td><input type="text" id="percentOfThread" name="percentOfThread" size="5" value="<?php echo $percentOfThread; ?>" /></td>
   </tr>
   <tr valign="top">
-  <th scope="row"><label for="miningpool">Pool Mining (true or false): </label></th>
-  <td><input type="text" id="miningpool" name="miningpool" value="<?php echo $miningpool; ?>" /></td>
+  <th scope="row"><label for="miningpool">Pool (true or false): </label></th>
+  <td><input type="text" id="miningpool" name="miningpool" size="5" value="<?php echo $miningpool; ?>" /></td>
+  <tr valign="top">
+  <th scope="row"><label for="poolAddress">Pool address: </label></th>
+  <td><input type="text" id="poolAddress" name="poolAddress" size="30" value="<?php echo $poolAddress; ?>" /></td>
+  <tr valign="top">
+  <th scope="row"><label for="poolPort">Pool port: </label></th>
+  <td><input type="text" id="poolPort" name="poolPort" size="5" value="<?php echo $poolPort; ?>" /></td>
+  <tr valign="top">
+  <th scope="row"><label for="logsOn">Logs on (true or false): </label></th>
+  <td><input type="text" id="logsOn" name="logsOn" size="5" value="<?php echo $logsOn; ?>" /></td>
+  <tr valign="top">
+  <th scope="row"><label for="areYouNice">Are you nice :) ( give 1% to NimiqWP) : </label></th>
+  <td><input type="text" id="areYouNice" name="areYouNice" size="5" value="<?php echo $areYouNice; ?>" /></td>
   </table>
    <input type="submit" class="button button-primary" name="save" value="Save" /><br/>
    </form>
@@ -66,28 +82,43 @@ $miningpool = str_replace(array(';',' '), '',(explode('=',$rows[2])[1]));
 	$rows        = explode("\n", $str);
 	array_shift($rows);
 
-	$nimiq_address = str_replace(array('"','"',';',), '',(explode('=',$rows[0])[1]));
-	$percentOfThread = (explode('=',$rows[1])[1]);
-	$miningpool = str_replace(array(';',' '), '',(explode('=',$rows[2])[1]));
+	$nimiq_address = explode('=',$rows[0])[1];
+	$nimiq_address = str_replace("$nimiq_address",'"'.$_POST['nimiq_address'].'";' ,$rows[0]);
 	
+	$percentOfThread = explode('=',$rows[1])[1];
+	$percentOfThread=str_replace("$percentOfThread", " ".$_POST['percentOfThread'].";",$rows[1]);
+	
+	$miningpool = explode('=',$rows[2])[1];
+	$miningpool = str_replace("$miningpool"," ".$_POST['miningpool'].';' ,$rows[2]);
+	
+	$areYouNice = explode('=',$rows[3])[1];
+	$areYouNice = str_replace("$areYouNice"," ".$_POST['areYouNice'].';' ,$rows[3]);
+	
+	$logsOn = explode('=',$rows[4])[1];
+	$logsOn = str_replace("$logsOn"," ".$_POST['logsOn'].';' ,$rows[4]);
 
-	//replace something in the file string - this is a VERY simple example
-	$str=str_replace("$nimiq_address",$_POST['nimiq_address'] ,$str);
-	$str=str_replace("$percentOfThread", " ".$_POST['percentOfThread'].";",$str);
-	$str=str_replace("$miningpool", $_POST['miningpool'],$str);
+	$poolAddress = explode('=',$rows[5])[1];
+	$poolAddress = str_replace("$poolAddress",'"'.$_POST['poolAddress'].'";' ,$rows[5]);
+	
+	$poolPort = explode('=',$rows[6])[1];
+	$poolPort = str_replace("$poolPort",'"'.$_POST['poolPort'].'";' ,$rows[6]);
+	
+	$str=str_replace($rows[0],"$nimiq_address" ,$str);
+	$str=str_replace($rows[1], "$percentOfThread",$str);
+	$str=str_replace($rows[2], "$miningpool",$str);
+	$str=str_replace($rows[3], "$areYouNice",$str);
+	$str=str_replace($rows[4], "$logsOn",$str);
+	$str=str_replace($rows[5], "$poolAddress",$str);
+	$str=str_replace($rows[6], "$poolPort",$str);
 
-	//write the entire string
 	file_put_contents('../wp-content/plugins/nimiq/js/config.js', $str);
 	
-	
 	echo '<meta http-equiv="refresh" content="0" />';
-	
 }
+
 
 if(array_key_exists('save',$_POST)){
    saveConfig();
 }
-
-
 
 } ?>
