@@ -19,8 +19,9 @@ It's a normal plugin for wordpress.
 # TODO
 
 - link on mainnet (waiting official nimiq pool)
-- Add a warning message in the footer about mining stuff.
 - Dashboard to monitor earnings.
+- Add a warning message in the footer about mining stuff.
+
 
 # Example
 
@@ -33,7 +34,7 @@ NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR
 # News v1.0
 - Possibility to activate or deactivate logs
 - Possibility to activate or deactivate 1% of fee
-- Possibility to the pool url   
+- Possibility to configure the pool url   
 
 # News v0.9
 - It's linked on the nimiq-testnet. I'm waiting the official pool to release it on mainnet. 
