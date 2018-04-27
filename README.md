@@ -28,12 +28,12 @@ It's a normal plugin for wordpress.
 
 NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR
 
-#News v1.0
+# News v1.0
 - Possibility to activate or deactivate logs
 - Possibility to activate or deactivate 1% of fee
 - Possibility to the pool url   
 
-#News v0.9
+# News v0.9
 - It's linked on the nimiq-testnet. I'm waiting the official pool to release it on mainnet. 
 - Configuration Dashboard.
 - Mining pool support.
