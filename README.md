@@ -35,6 +35,7 @@ NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR
 - Possibility to activate or deactivate logs
 - Possibility to activate or deactivate 1% of fee
 - Possibility to configure the pool url   
+- Chrome errors fixed
 
 # News v0.9
 - It's linked on the nimiq-testnet. I'm waiting the official pool to release it on mainnet. 
