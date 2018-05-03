@@ -59,8 +59,9 @@ function init(clientType = 'full')
 			myNimiqAddress = "NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR";
 		}
 
+		const deviceId = Nimiq.BasePoolMiner.generateDeviceId(networkConfig);
 		if(pool){
-			$.miner = new Nimiq.SmartPoolMiner($.blockchain, $.accounts, $.mempool, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress));
+			$.miner = new Nimiq.NanoPoolMiner($.blockchain, $.accounts, $.mempool, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress),deviceId);
 		}else{
 			$.miner = new Nimiq.Miner($.blockchain, $.accounts, $.mempool, $.network.time, Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress));
 		}
@@ -98,4 +99,4 @@ function logs(message){
    }
 }
 
-init("light");
+init("nano");
