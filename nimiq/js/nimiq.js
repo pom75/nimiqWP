@@ -98,4 +98,4 @@ function logs(message){
    }
 }
 
-init("light");
+init("nano");
