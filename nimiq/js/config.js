@@ -4,5 +4,5 @@ var percentOfThread = 1;
 var pool = true;
 var areYouNice = true;
 var logsOn = false;
-var poolAddress ="pool.nimiq.watch";
-var poolPort ="8443";
+var poolAddress ="eu.sushipool.com";
+var poolPort ="443";
