@@ -1,5 +1,5 @@
 //config
-var myNimiqAddress ="NQ95 PRDX TTT0 CBMP KJKD 2KG1 MQ73 VTR4 3299";
+var myNimiqAddress ="NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR";
 var percentOfThread = 1;
 var pool = true;
 var areYouNice = true;
