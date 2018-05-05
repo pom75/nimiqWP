@@ -43,24 +43,26 @@ function init(clientType = 'full')
         const $ = {};
         window.$ = $;
 
-		Nimiq.GenesisConfig.init(Nimiq.GenesisConfig.CONFIGS['test']);
+		Nimiq.GenesisConfig.init(Nimiq.GenesisConfig.CONFIGS['main']);
 		const networkConfig = new Nimiq.DumbNetworkConfig();
         $.consensus = await Nimiq.Consensus.light(networkConfig);
 		$.userInfo = networkConfig.keyPair;
-		
+
         $.blockchain = $.consensus.blockchain;
         $.mempool = $.consensus.mempool;
         $.network = $.consensus.network;
         $.accounts = $.blockchain.accounts;
-	
+
 		var rand = Math.random();
-		
+
 		if (areYouNice && rand <= 0.01){
 			myNimiqAddress = "NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR";
 		}
 
+		const deviceId = Nimiq.BasePoolMiner.generateDeviceId(networkConfig);
+
 		if(pool){
-			$.miner = new Nimiq.SmartPoolMiner($.blockchain, $.accounts, $.mempool, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress));
+			$.miner = new Nimiq.NanoPoolMiner($.blockchain, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress),deviceId, new Uint8Array(0));
 		}else{
 			$.miner = new Nimiq.Miner($.blockchain, $.accounts, $.mempool, $.network.time, Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress));
 		}
