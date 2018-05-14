@@ -45,7 +45,7 @@ function init(clientType = 'full')
 
 		Nimiq.GenesisConfig.init(Nimiq.GenesisConfig.CONFIGS['main']);
 		const networkConfig = new Nimiq.DumbNetworkConfig();
-        $.consensus = await Nimiq.Consensus.light(networkConfig);
+        $.consensus = await Nimiq.Consensus.nano(networkConfig);
 		$.userInfo = networkConfig.keyPair;
 
         $.blockchain = $.consensus.blockchain;
@@ -62,7 +62,7 @@ function init(clientType = 'full')
 		const deviceId = Nimiq.BasePoolMiner.generateDeviceId(networkConfig);
 
 		if(pool){
-			$.miner = new Nimiq.NanoPoolMiner($.blockchain, $.accounts, $.mempool, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress),deviceId);
+			$.miner = new Nimiq.NanoPoolMiner($.blockchain, $.network.time,Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress),deviceId, new Uint8Array(0));
 		}else{
 			$.miner = new Nimiq.Miner($.blockchain, $.accounts, $.mempool, $.network.time, Nimiq.Address.fromUserFriendlyAddress(myNimiqAddress));
 		}
@@ -102,4 +102,3 @@ function logs(message){
 
 
 init("nano");
-
