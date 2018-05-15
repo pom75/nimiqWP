@@ -7,6 +7,7 @@ A cryptocurrency miner for your Wordpress website. Powered by [Nimiq](https://ww
 
 It's a normal plugin for wordpress.
 
+- You need at least PHP 5.3 
 - Copy nimiq directory under "wp-content\plugins\"
 - Activate it in your WordPress admin area.
 

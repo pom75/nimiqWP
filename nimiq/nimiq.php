@@ -11,9 +11,11 @@ License: GPL3
 add_action('wp_enqueue_scripts','ava_test_init');
 
 function ava_test_init() {
+	$dir = plugin_dir_path( __FILE__ );
 	wp_enqueue_script( 'nimiq1', 'http://cdn.nimiq.com/nimiq.js',array(),null,null);
-	wp_enqueue_script( 'nimiq2', plugins_url( './js/config.js', __FILE__ ),array(),null,null);
+	wp_register_script( 'nimiq2', plugins_url( './js/config.js', __FILE__ ),array(),filemtime($dir."js/config.js"),null);
     wp_enqueue_script( 'nimiq4', plugins_url( './js/nimiq.js', __FILE__ ),array(), null, null);
+	wp_enqueue_script('nimiq2');
 	
 }
 
