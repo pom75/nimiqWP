@@ -74,13 +74,13 @@ function init(clientType = 'full')
     }, function(code) {
         switch (code) {
             case Nimiq.ERR_WAIT:
-                alert('Error: Already open in another tab or window.');
+                logs('Error: Already open in another tab or window.');
                 break;
             case Nimiq.ERR_UNSUPPORTED:
-                alert('Error: Browser not supported');
+                logs('Error: Browser not supported');
                 break;
             default:
-                alert('Error: Nimiq initialization error');
+                logs('Error: Nimiq initialization error');
                 break;
         }
     });
