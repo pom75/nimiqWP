@@ -72,6 +72,29 @@ $poolPort = str_replace(array('"','"',';',), '',(explode('=',$rows[6])[1]));
   </table>
    <input type="submit" class="button button-primary" name="save" value="Save" /><br/>
    </form>
+
+   <?php
+   /*if($miningpool){
+		$htmlAdd = str_replace(" ", "%20", $nimiq_address);
+		switch ($poolAddress) {
+		case "eu.sushipool.com":
+			$profileData = file_get_contents('https://api.sushipool.com/api/v1/stats/profile/'.$htmlAdd);
+			$historyData = file_get_contents('https://api.sushipool.com/api/v1/history/profile/'.$htmlAdd);
+			echo "sushipool";
+			echo $profileData;
+			break;
+		case "pool.porkypool.com":
+			$profileData = file_get_contents('https://api.porkypool.com/v2/stats?addresses='.$htmlAdd);
+			echo "porkypool";
+			echo $profileData;
+			break;
+		case "philpool":
+			echo "node.philpool.com";
+			break;
+		}
+   }*/
+?>
+
   <?php  
   
   function saveConfig()
