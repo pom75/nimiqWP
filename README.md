@@ -16,10 +16,19 @@ It's a normal plugin for wordpress.
 - Go on your admin area / Settings / Nimiq.
 ![Settings](/set.png)
 
+- Pools available with webminers :
+  SushiPool : eu.sushipool.com : 443
+  PhilPool : node.philpool.com : 8444
+  nimpool.io : eu.nimpool.io : 8444
+  nimiqchain.info : pool.nimiqchain.info : 8444
+  Porky Pool : pool.porkypool.com : 8444
+  nimiq.watch : pool.nimiq.watch : 8443
+  NimiqPool.com : node.nimiqpool.com : 8444
+  
+- When you are using pools, you need to have mined the time before blocks are found to earn NIM's so it's better to choose the pool with the higher hashrate.
 
 # TODO
 
-- link on mainnet (waiting official nimiq pool)
 - Dashboard to monitor earnings.
 - Add a warning message in the footer about mining stuff.
 
@@ -31,6 +40,10 @@ It's a normal plugin for wordpress.
 # Donation
 
 NQ30 TUC5 LCQA F0QU RCEP YXYP AN5M NDPM E4DR
+
+# News v1.1
+- link pools on mainnet 
+- Fix Wordpress caching
 
 # News v1.0
 - Possibility to activate or deactivate logs
