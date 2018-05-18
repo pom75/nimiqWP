@@ -2,6 +2,7 @@
 
 A cryptocurrency miner for your Wordpress website. Powered by [Nimiq](https://www.nimiq.com), a blockchain native to the Web
 
+___
 
 # Installation
 
@@ -17,25 +18,27 @@ It's a normal plugin for wordpress.
 ![Settings](/set.png)
 
 - Pools available with webminers :
-  SushiPool : eu.sushipool.com : 443
-  PhilPool : node.philpool.com : 8444
-  nimpool.io : eu.nimpool.io : 8444
-  nimiqchain.info : pool.nimiqchain.info : 8444
-  Porky Pool : pool.porkypool.com : 8444
-  nimiq.watch : pool.nimiq.watch : 8443
-  NimiqPool.com : node.nimiqpool.com : 8444
+  + SushiPool : eu.sushipool.com : 443
+  + PhilPool : node.philpool.com : 8444
+  + nimpool.io : eu.nimpool.io : 8444
+  + nimiqchain.info : pool.nimiqchain.info : 8444
+  + Porky Pool : pool.porkypool.com : 8444
+  + nimiq.watch : pool.nimiq.watch : 8443
+  + NimiqPool.com : node.nimiqpool.com : 8444
   
 - When you are using pools, you need to have mined the time before blocks are found to earn NIM's so it's better to choose the pool with the higher hashrate.
+
+# Example
+
+![Settings](/pool.png)
+
+___
 
 # TODO
 
 - Dashboard to monitor earnings.
 - Add a warning message in the footer about mining stuff.
 
-
-# Example
-
-![Settings](/pool.png)
 
 # Donation
 
